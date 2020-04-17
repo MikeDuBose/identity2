@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    IEnumerable<UserTask> tasks = (IEnumerable<UserTask>)ViewData["Tasks"];
+}
+
+@if (@ViewData["UID"] != null)
+{
+    <h1>Hello, Let's Review Your Tasks!</h1>
+    @foreach (UserTask t in tasks)
+    {
+        <h1>@t.TaskDescription</h1>
+        <input type="button" value="Complete!" onclick="location.href='@Url.Action("CompleteTask", "Task", new { id = t.Id })'" />
+
+        
+  }
+    <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
+}
+else
+{
+    <h1>Please Login to view this page!</h1>
+}
+
+
